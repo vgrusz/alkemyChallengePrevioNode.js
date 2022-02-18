@@ -45,7 +45,7 @@ app.get("/characters", (req, res) => {
       attributes: { exclude: ["id", "edad", "peso", "historia", "Peliculas"] },
       include: {
         model: Pelicula,
-        where: { id: req.query.movie },
+        where: { id: req.query.movies },
         attributes: {
           exclude: ["Peliculas", "id", "imagen", "titulo", "fecha", "calificacion", "generoId", "pelicula_x_personaje"],
         },

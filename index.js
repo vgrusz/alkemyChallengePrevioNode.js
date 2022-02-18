@@ -39,7 +39,7 @@ app.get("/", function (req, res) {
   res.send("Hola mundo");
 });
 
-app.listen(PORT, function () {
+const server = app.listen(PORT, function () {
   console.log(`App en http://localhost:${PORT}\n`);
 
   sequelize
@@ -51,3 +51,5 @@ app.listen(PORT, function () {
       console.log("Error al conectar a DB", error);
     });
 });
+
+module.exports = server;

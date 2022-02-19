@@ -31,19 +31,6 @@ const personajes_x_peliculas = [
   { peliculaId: 2, personajeId: 3 },
   { peliculaId: 3, personajeId: 3 },
   { peliculaId: 4, personajeId: 4 },
-  /*
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-  {peliculaId: ,personajeId: }
-*/
 ];
 
 function rellenar() {
@@ -52,16 +39,21 @@ function rellenar() {
     setTimeout(() => {
       /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 
       indexaciones asíncronas relativas al borrado y re creación de tablas */
+      console.log("Llenando géneros");
       generos.forEach((genero) => Genero.create(genero));
 
+      console.log("Llenando personajes");
       personajes.forEach((personaje) => Personaje.create(personaje));
 
+      console.log("Llenando películas");
       peliculas.forEach((pelicula) => Pelicula.create(pelicula));
 
       setTimeout(() => {
         /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 
       indexaciones asíncronas relativas a la inserción de registros y que no dé errores
       de validación */
+        console.log("Llenando relación películas X personajes");
+
         personajes_x_peliculas.forEach(async (unElemento) => {
           let consulta =
             "INSERT INTO pelicula_x_personaje (`PeliculaId`, `PersonajeId`) VALUES (" +

@@ -11,7 +11,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
   var token = "Initial value";
 
   before(() => {
-    console.log("Al iniciar casos de testeo");
+    //console.log("Al iniciar casos de testeo");
 
     try {
       token = fs.readFileSync("./test/token.txt", "utf8");
@@ -24,7 +24,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
   });
 
   beforeEach(() => {
-    console.log("Antes de cada caso de testeo");
+    //console.log("Antes de cada caso de testeo");
   });
 
   after(function (done) {

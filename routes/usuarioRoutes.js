@@ -56,7 +56,6 @@ function enviarEmaildeRegistracion(email) {
     subject: "Registración en DisneyApp",
     html: "<strong>Se ha completado el registro</strong>",
   };
-  /* ANULADO MOMENTANEAMENTE PARA PRUEBAS
   sgMail
     .send(msg)
     .then((response) => {
@@ -66,7 +65,6 @@ function enviarEmaildeRegistracion(email) {
     .catch((error) => {
       console.error(error);
     });
-*/
 }
 
 module.exports = app;

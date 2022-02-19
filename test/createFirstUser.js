@@ -10,13 +10,13 @@ describe("Suite de prueba inicial que crea un usuario, lo loguea, obtiene el tok
   var server;
 
   before(async () => {
-    console.log("Al iniciar casos de testeo");
+    //console.log("Al iniciar casos de testeo");
 
     server = require("../index");
   });
 
   beforeEach(() => {
-    console.log("Antes de cada caso de testeo");
+    //console.log("Antes de cada caso de testeo");
   });
 
   after(function (done) {

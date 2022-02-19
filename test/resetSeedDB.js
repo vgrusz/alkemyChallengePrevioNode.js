@@ -47,7 +47,7 @@ const personajes_x_peliculas = [
 ];
 
 function rellenar() {
-  console.log("rellenar");
+  console.log("Resetear BD y rellenarla con set de datos curados para testeo");
   sequelize.sync({ force: true }).then(() => {
     setTimeout(() => {
       /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 

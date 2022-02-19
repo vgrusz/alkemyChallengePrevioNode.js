@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const fs = require("fs");
 
-describe("Casos de testeo", () => {
+describe("Suite de prueba inicial que crea un usuario, lo loguea, obtiene el token y guarda el token en un archivo de texto para ser usado por la siguiente suite de test", () => {
   var server;
 
   before(async () => {

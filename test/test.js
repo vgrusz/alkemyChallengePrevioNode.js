@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const fs = require("fs");
 
-describe("Casos de testeo", () => {
+describe("Suite de testeos que lee archivo de token de la suite inicial y hace pruebas con ese token", () => {
   var server;
   var token = "Initial value";
 
@@ -64,8 +64,6 @@ describe("Casos de testeo", () => {
         if (err) {
           console.log(err);
         }
-
-        //console.log(res);
         res.should.have.status(513);
         done();
       });

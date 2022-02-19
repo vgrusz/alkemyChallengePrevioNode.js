@@ -21,6 +21,7 @@ app.use(
     path: [
       { url: "/auth/login", methods: ["POST"] },
       { url: "/auth/register", methods: ["POST"] },
+      { url: "/", methods: ["GET"] },
     ],
   })
 );

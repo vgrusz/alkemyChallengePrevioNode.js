@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "node prueba && mocha --exit"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "mocha": "^9.2.0"
   }
 }

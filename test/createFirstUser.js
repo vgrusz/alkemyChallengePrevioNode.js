@@ -8,17 +8,9 @@ const fs = require("fs");
 
 describe("Casos de testeo", () => {
   var server;
-  var token = "Initial valuemocha ";
 
   before(async () => {
     console.log("Al iniciar casos de testeo");
-
-    try {
-      token = fs.readFileSync("./test/token.txt", "utf8");
-      //console.log(token);
-    } catch (err) {
-      console.error(err);
-    }
 
     server = require("../index");
   });
@@ -32,10 +24,11 @@ describe("Casos de testeo", () => {
     done();
   });
 
-  it("Obtener pagina principal", (done) => {
+  it("Crear un usuario", (done) => {
     chai
       .request(server)
-      .get("/")
+      .post("/auth/register")
+      .send({ email: "a@a.com", clave: "123" })
       .end((err, res) => {
         if (err) {
           console.log(err);
@@ -45,31 +38,25 @@ describe("Casos de testeo", () => {
       });
   });
 
-  it("Acceder a un endpoint teniendo el token", function (done) {
-    console.log("token inside test function ", token);
-
+  it("Loguear un usuario", (done) => {
     chai
       .request(server)
-      .get("/characters")
-      .auth(token, { type: "bearer" })
-      .end(function (err, res) {
-        //console.log(res.body);
-        res.should.have.status(200);
-        done();
-      });
-  });
-
-  it("Intentar accecer a un endpoint sin token", (done) => {
-    chai
-      .request(server)
-      .get("/characters")
+      .post("/auth/login")
+      .send({ email: "a@a.com", clave: "123" })
       .end((err, res) => {
         if (err) {
           console.log(err);
         }
+        console.log(res.text);
 
-        //console.log(res);
-        res.should.have.status(513);
+        try {
+          fs.writeFileSync("./test/token.txt", res.text);
+          //file written successfully
+        } catch (err) {
+          console.error(err);
+        }
+
+        res.should.have.status(200);
         done();
       });
   });

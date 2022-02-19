@@ -1,3 +1,3 @@
-rellenar = require("./test/reset-seed-DB");
+rellenar = require("./test/resetSeedDB");
 
 rellenar();

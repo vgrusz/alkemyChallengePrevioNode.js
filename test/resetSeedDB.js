@@ -71,8 +71,8 @@ function rellenar() {
             console.log(error);
           }
         });
-      }, 15000);
-    }, 15000);
+      }, 1000);
+    }, 5000);
 
     //Brinda 5 segundos al servidor para actualizar sus índices y que no dé error de validación
   });

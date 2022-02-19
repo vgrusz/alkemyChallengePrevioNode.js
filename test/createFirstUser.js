@@ -47,15 +47,12 @@ describe("Casos de testeo", () => {
         if (err) {
           console.log(err);
         }
-        console.log(res.text);
 
         try {
           fs.writeFileSync("./test/token.txt", res.text);
-          //file written successfully
         } catch (err) {
           console.error(err);
         }
-
         res.should.have.status(200);
         done();
       });

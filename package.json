@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node prueba && mocha ./test/createFirstUser.js ./test/test.js --exit"
+    "test": "node ./test/resetSeedDB.js && mocha ./test/createFirstUser.js ./test/test.js --exit"
   },
   "keywords": [],
   "author": "",

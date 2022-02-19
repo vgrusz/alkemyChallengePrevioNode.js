@@ -50,6 +50,8 @@ function rellenar() {
   console.log("rellenar");
   sequelize.sync({ force: true }).then(() => {
     setTimeout(() => {
+      /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 
+      indexaciones asíncronas relativas al borrado y re creación de tablas */
       generos.forEach((genero) => Genero.create(genero));
 
       personajes.forEach((personaje) => Personaje.create(personaje));
@@ -57,6 +59,9 @@ function rellenar() {
       peliculas.forEach((pelicula) => Pelicula.create(pelicula));
 
       setTimeout(() => {
+        /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 
+      indexaciones asíncronas relativas a la inserción de registros y que no dé errores
+      de validación */
         personajes_x_peliculas.forEach(async (unElemento) => {
           let consulta =
             "INSERT INTO pelicula_x_personaje (`PeliculaId`, `PersonajeId`) VALUES (" +
@@ -73,9 +78,7 @@ function rellenar() {
         });
       }, 1000);
     }, 5000);
-
-    //Brinda 5 segundos al servidor para actualizar sus índices y que no dé error de validación
   });
 }
 
-module.exports = rellenar;
+rellenar();

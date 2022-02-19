@@ -8,9 +8,9 @@ const fs = require("fs");
 
 describe("Casos de testeo", () => {
   var server;
-  var token = "Initial valuemocha ";
+  var token = "Initial value";
 
-  before(async () => {
+  before(() => {
     console.log("Al iniciar casos de testeo");
 
     try {
@@ -46,14 +46,11 @@ describe("Casos de testeo", () => {
   });
 
   it("Acceder a un endpoint teniendo el token", function (done) {
-    console.log("token inside test function ", token);
-
     chai
       .request(server)
       .get("/characters")
       .auth(token, { type: "bearer" })
       .end(function (err, res) {
-        //console.log(res.body);
         res.should.have.status(200);
         done();
       });

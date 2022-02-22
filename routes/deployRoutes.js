@@ -2,7 +2,9 @@ const app = require("express")();
 
 const { urlencoded } = require("express");
 
-//LISTAR TODOS
+//Ruta para llenar inicialmente la BD con set de datos de prueba.
+//Únicamente con propósitos de testeo.
+//Eliminar luego de fase de pruebas.
 
 app.post("/resetPopulateDB", (req, res) => {
   require("../test/resetSeedDB");

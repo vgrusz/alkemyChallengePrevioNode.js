@@ -69,9 +69,15 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
       });
   });
 
-  /* Formato básico
-  it("Caso 1", () => {
-    assert(true, "True es true");
+  it("Intentar crear una película sin género", (done) => {
+    chai
+      .request(server)
+      .post("/movies")
+      .auth(token, { type: "bearer" })
+      .send({ titulo: "Fantasía 3", imagen: "url img Fantasía3", fecha: "1998-12-31T23:00:00.000Z", calificacion: 1 })
+      .end(function (err, res) {
+        res.should.have.status(404);
+        done();
+      });
   });
-*/
 });

@@ -23,7 +23,6 @@ app.use(
       { url: "/auth/login", methods: ["POST"] },
       { url: "/auth/register", methods: ["POST"] },
       { url: "/resetPopulateDB", methods: ["POST"] },
-
       { url: "/", methods: ["GET"] },
     ],
   })

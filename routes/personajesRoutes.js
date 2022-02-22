@@ -52,6 +52,7 @@ app.get("/characters", (req, res) => {
       },
     })
       .then((personajes) => {
+        //Quita los campos no solicitados
         let personajes2 = personajes.map((unPersonaje) => {
           return { imagen: unPersonaje.imagen, nombre: unPersonaje.nombre };
         });

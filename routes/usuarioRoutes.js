@@ -38,7 +38,8 @@ app.post("/auth/login", async (req, res) => {
 
       if (claveEsCorrecta) {
         let tokenData = { usuario: usuario.email };
-        let token = jwt.sign(tokenData, "Secret", { expiresIn: 60 * 60 * 24 });
+
+        let token = jwt.sign(tokenData, process.env.JWT_SECRET_WORD, { expiresIn: 60 * 60 * 24 });
         res.send(token);
       } else {
         throw new Error("Clave incorrecta");
@@ -52,7 +53,7 @@ app.post("/auth/login", async (req, res) => {
 function enviarEmaildeRegistracion(email) {
   const msg = {
     to: email,
-    from: "mensajeavictor@gmail.com",
+    from: "disneyapp@gdisney.com",
     subject: "Registración en DisneyApp",
     html: "<strong>Se ha completado el registro</strong>",
   };

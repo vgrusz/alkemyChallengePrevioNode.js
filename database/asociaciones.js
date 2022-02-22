@@ -1,6 +1,6 @@
-const Personaje = require("./models/PersonajeDBModel");
-const Pelicula = require("./models/PeliculaDBModel");
-const Genero = require("./models/GeneroDBModel");
+const Personaje = require("./models/CharacterDBModel");
+const Pelicula = require("./models/MovieDBModel");
+const Genero = require("./models/GenreDBModel");
 
 Genero.hasMany(Pelicula, {
   foreignKey: {

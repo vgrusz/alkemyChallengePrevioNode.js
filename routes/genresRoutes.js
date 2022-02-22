@@ -1,7 +1,7 @@
 const app = require("express")();
 
 const { urlencoded } = require("express");
-const Genero = require("../database/models/GeneroDBModel");
+const Genero = require("../database/models/GenreDBModel");
 
 //LISTAR TODOS
 

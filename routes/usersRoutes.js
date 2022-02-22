@@ -4,7 +4,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const { urlencoded } = require("express");
-const Usuario = require("../database/models/UsuarioDBModel");
+const Usuario = require("../database/models/UserDBModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 

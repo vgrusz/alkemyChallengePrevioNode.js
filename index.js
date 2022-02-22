@@ -2,10 +2,10 @@ const express = require("express");
 const app = express();
 
 const sequelize = require("./database/db");
-const personajesRoutes = require("./routes/personajesRoutes");
-const peliculasRoutes = require("./routes/peliculasRoutes");
-const generosRoutes = require("./routes/generosRoutes");
-const usuarioRoutes = require("./routes/usuarioRoutes");
+const charactersRoutes = require("./routes/charactersRoutes");
+const moviesRoutes = require("./routes/moviesRoutes");
+const genresRoutes = require("./routes/genresRoutes");
+const usersRoutes = require("./routes/usersRoutes");
 const deployRoutes = require("./routes/deployRoutes");
 const unless = require("express-unless");
 const auth = require("./middleware/middleware");
@@ -28,10 +28,10 @@ app.use(
   })
 );
 
-app.use(personajesRoutes);
-app.use(peliculasRoutes);
-app.use(generosRoutes);
-app.use(usuarioRoutes);
+app.use(charactersRoutes);
+app.use(moviesRoutes);
+app.use(genresRoutes);
+app.use(usersRoutes);
 
 //Rutas para pruebas iniciales, eliminar luego.
 app.use(deployRoutes);

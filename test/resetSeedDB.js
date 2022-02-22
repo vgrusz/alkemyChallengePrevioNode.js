@@ -1,8 +1,8 @@
 const sequelize = require("../database/db");
-const Genero = require("../database/models/GeneroDBModel");
-const Personaje = require("../database/models/PersonajeDBModel");
-const Pelicula = require("../database/models/PeliculaDBModel");
-const Usuario = require("../database/models/UsuarioDBModel");
+const Genero = require("../database/models/GenreDBModel");
+const Personaje = require("../database/models/CharacterDBModel");
+const Pelicula = require("../database/models/MovieDBModel");
+const Usuario = require("../database/models/UserDBModel");
 require("../database/asociaciones");
 
 const generos = [

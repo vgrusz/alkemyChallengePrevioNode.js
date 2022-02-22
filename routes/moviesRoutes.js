@@ -1,8 +1,8 @@
 const app = require("express")();
 
 const { urlencoded } = require("express");
-const Pelicula = require("../database/models/PeliculaDBModel");
-const Personaje = require("../database/models/PersonajeDBModel");
+const Pelicula = require("../database/models/MovieDBModel");
+const Personaje = require("../database/models/CharacterDBModel");
 
 //LISTAR TODOS EN FORMATO DEL PUNTO 7 Y 10 DEL CHALLENGE
 

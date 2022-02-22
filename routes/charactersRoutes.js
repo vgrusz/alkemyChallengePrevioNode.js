@@ -1,8 +1,8 @@
 const app = require("express")();
 
 const { urlencoded } = require("express");
-const Personaje = require("../database/models/PersonajeDBModel");
-const Pelicula = require("../database/models/PeliculaDBModel");
+const Personaje = require("../database/models/CharacterDBModel");
+const Pelicula = require("../database/models/MovieDBModel");
 require("../database/asociaciones");
 
 app.get("/characters", (req, res) => {

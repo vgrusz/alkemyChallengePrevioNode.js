@@ -34,25 +34,25 @@ const personajes_x_peliculas = [
 ];
 
 function rellenar() {
-  console.log("Resetear BD y rellenarla con set de datos curados para testeo");
+  console.log("Reset DB and fill it with a set of values for testing purpouses");
   sequelize.sync({ force: true }).then(() => {
     setTimeout(() => {
       /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 
       indexaciones asíncronas relativas al borrado y re creación de tablas */
-      console.log("Llenando géneros");
+      console.log("Filling genres");
       generos.forEach((genero) => Genero.create(genero));
 
-      console.log("Llenando personajes");
+      console.log("Filling characters");
       personajes.forEach((personaje) => Personaje.create(personaje));
 
-      console.log("Llenando películas");
+      console.log("Filling movies");
       peliculas.forEach((pelicula) => Pelicula.create(pelicula));
 
       setTimeout(() => {
         /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 
       indexaciones asíncronas relativas a la inserción de registros y que no dé errores
       de validación */
-        console.log("Llenando relación películas X personajes");
+        console.log("Filling association películas X personajes");
 
         personajes_x_peliculas.forEach(async (unElemento) => {
           let consulta =
@@ -68,10 +68,10 @@ function rellenar() {
             console.log(error);
           }
         });
-        console.log("Reset + seed DB terminado");
+        console.log("Reset + seed DB finished");
       }, 1000);
     }, 5000);
   });
 }
 
-rellenar();
+seed();

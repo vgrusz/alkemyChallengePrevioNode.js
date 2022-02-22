@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const fs = require("fs");
 
-describe("Suite de prueba inicial que crea un usuario, lo loguea, obtiene el token y guarda el token en un archivo de texto para ser usado por la siguiente suite de test", () => {
+describe("Initial testing suite, creates an user, logins it, gets its token and stores token in a text file to be used by the next suite of tests", () => {
   var server;
 
   before(async () => {
@@ -24,7 +24,7 @@ describe("Suite de prueba inicial que crea un usuario, lo loguea, obtiene el tok
     done();
   });
 
-  it("Crear un usuario", (done) => {
+  it("Create a user", (done) => {
     chai
       .request(server)
       .post("/auth/register")
@@ -38,7 +38,7 @@ describe("Suite de prueba inicial que crea un usuario, lo loguea, obtiene el tok
       });
   });
 
-  it("Loguear un usuario", (done) => {
+  it("Login a user", (done) => {
     chai
       .request(server)
       .post("/auth/login")
@@ -57,10 +57,4 @@ describe("Suite de prueba inicial que crea un usuario, lo loguea, obtiene el tok
         done();
       });
   });
-
-  /* Formato básico
-  it("Caso 1", () => {
-    assert(true, "True es true");
-  });
-*/
 });

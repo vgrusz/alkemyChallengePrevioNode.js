@@ -11,8 +11,6 @@ Genero.init(
     },
 
     imagen: DataTypes.STRING,
-
-    //Peliculas asociadas
   },
   {
     sequelize,

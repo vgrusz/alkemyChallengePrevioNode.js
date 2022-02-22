@@ -64,7 +64,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
         if (err) {
           console.log(err);
         }
-        res.should.have.status(513);
+        res.should.have.status(401);
         done();
       });
   });

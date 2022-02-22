@@ -7,7 +7,7 @@ function auth(req, res, next) {
 
   jwt.verify(token, "Secret", (error, usuario) => {
     if (error) {
-      res.status(513).send("Error de token y/o usuario no logueado");
+      res.status(401).send("Error de token y/o usuario no logueado");
     } else {
       next();
     }

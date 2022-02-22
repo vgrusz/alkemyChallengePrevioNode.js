@@ -10,7 +10,7 @@ const deployRoutes = require("./routes/deployRoutes");
 const unless = require("express-unless");
 const auth = require("./middleware/middleware");
 
-require("./database/asociaciones");
+require("./database/associations");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

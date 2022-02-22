@@ -3,7 +3,7 @@ const Genero = require("../database/models/GenreDBModel");
 const Personaje = require("../database/models/CharacterDBModel");
 const Pelicula = require("../database/models/MovieDBModel");
 const Usuario = require("../database/models/UserDBModel");
-require("../database/asociaciones");
+require("../database/associations");
 
 const generos = [
   { nombre: "Ficcion", imagen: "url img ficcion" },

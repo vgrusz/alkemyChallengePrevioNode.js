@@ -3,7 +3,7 @@ const app = require("express")();
 const { urlencoded } = require("express");
 const Character = require("../database/models/CharacterDBModel");
 const Movie = require("../database/models/MovieDBModel");
-require("../database/asociaciones");
+require("../database/associations");
 
 app.get("/characters", (req, res) => {
   // Punto 3 del challenge

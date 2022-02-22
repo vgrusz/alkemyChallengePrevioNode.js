@@ -32,6 +32,8 @@ app.use(personajesRoutes);
 app.use(peliculasRoutes);
 app.use(generosRoutes);
 app.use(usuarioRoutes);
+
+//Rutas para pruebas iniciales, eliminar luego.
 app.use(deployRoutes);
 
 // Inicio del servidor y conexión a la BD

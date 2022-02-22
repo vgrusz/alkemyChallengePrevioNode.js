@@ -1,6 +1,6 @@
 Challenge aceleración Alkemy backend Node.js
 
-Consideraciones para reproducir el proyecto:
+Instrucciones para reproducir el proyecto:
 
     Clonar el repositorio
 

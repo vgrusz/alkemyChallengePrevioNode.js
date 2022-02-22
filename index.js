@@ -6,6 +6,7 @@ const personajesRoutes = require("./routes/personajesRoutes");
 const peliculasRoutes = require("./routes/peliculasRoutes");
 const generosRoutes = require("./routes/generosRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
+const deployRoutes = require("./routes/deployRoutes");
 const unless = require("express-unless");
 const auth = require("./middleware/middleware");
 
@@ -21,6 +22,8 @@ app.use(
     path: [
       { url: "/auth/login", methods: ["POST"] },
       { url: "/auth/register", methods: ["POST"] },
+      { url: "/resetPopulateDB", methods: ["POST"] },
+
       { url: "/", methods: ["GET"] },
     ],
   })
@@ -30,6 +33,7 @@ app.use(personajesRoutes);
 app.use(peliculasRoutes);
 app.use(generosRoutes);
 app.use(usuarioRoutes);
+app.use(deployRoutes);
 
 // Inicio del servidor y conexión a la BD
 

@@ -68,6 +68,7 @@ function rellenar() {
             console.log(error);
           }
         });
+        console.log("Reset + seed DB terminado");
       }, 1000);
     }, 5000);
   });

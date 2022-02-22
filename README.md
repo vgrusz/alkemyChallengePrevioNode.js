@@ -1,3 +1,5 @@
+    (Hay una versión en castellano de este archivo, ver README_español.md)
+
 Challenge accelleration Alkemy backend Node.js
 
 To reproduce project:
@@ -52,12 +54,12 @@ Extras
     Endpoints with complete data of characters and movies:
 
 
-    Since the challenge asks that some fields be excluded from the list of movies and characters, these routes were also created:
+        Since the challenge asks that some fields be excluded from the list of movies and characters, these routes were also created:
 
             get /rawMovies
             get /rawCharacters
 
-    to get characters and movies with all its data.
+        to get characters and movies with all its data.
 
 
 

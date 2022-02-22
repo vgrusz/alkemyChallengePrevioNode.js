@@ -33,7 +33,7 @@ const personajes_x_peliculas = [
   { peliculaId: 4, personajeId: 4 },
 ];
 
-function rellenar() {
+function seed() {
   console.log("Reset DB and fill it with a set of values for testing purpouses");
   sequelize.sync({ force: true }).then(() => {
     setTimeout(() => {

@@ -57,7 +57,7 @@ app.get("/movies", (req, res) => {
   }
 });
 
-//LISTAR TODOS
+//LIST ALL
 app.get("/rawMovies", (req, res) => {
   Movie.findAll()
     .then((movies) => {

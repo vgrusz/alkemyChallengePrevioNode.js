@@ -3,7 +3,7 @@ const app = require("express")();
 const { urlencoded } = require("express");
 const Genre = require("../database/models/GenreDBModel");
 
-//LISTAR TODOS
+//LIST ALL
 
 app.get("/genres", (req, res) => {
   Genre.findAll()

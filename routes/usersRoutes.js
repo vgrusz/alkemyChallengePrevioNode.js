@@ -20,7 +20,7 @@ app.post("/auth/register", async (req, res) => {
   })
     .then((user) => {
       sendMailRegistration(user.email);
-      res.send("usuario creado con éxito");
+      res.send("user sucessfully created");
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -32,7 +32,7 @@ app.post("/auth/login", async (req, res) => {
     let user = await User.findOne({ where: { email: req.body.email } });
 
     if (user == null) {
-      throw new Error("No se encontró usuario");
+      throw new Error("User not found");
     } else {
       let passwordIsOk = bcrypt.compareSync(req.body.clave, user.clave);
 
@@ -42,7 +42,7 @@ app.post("/auth/login", async (req, res) => {
         let token = jwt.sign(tokenData, process.env.JWT_SECRET_WORD, { expiresIn: 60 * 60 * 24 });
         res.send(token);
       } else {
-        throw new Error("Clave incorrecta");
+        throw new Error("Wrong password");
       }
     }
   } catch (error) {

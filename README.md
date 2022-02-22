@@ -57,7 +57,7 @@ Extras
             get /rawMovies
             get /rawCharacters
 
-        to get characters and movies with all its data.
+    to get characters and movies with all its data.
 
 
 

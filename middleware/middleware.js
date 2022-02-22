@@ -5,9 +5,9 @@ function auth(req, res, next) {
 
   token = token.replace("Bearer ", "");
 
-  jwt.verify(token, process.env.JWT_SECRET_WORD, (error, usuario) => {
+  jwt.verify(token, process.env.JWT_SECRET_WORD, (error, user) => {
     if (error) {
-      res.status(401).send("Error de token y/o usuario no logueado");
+      res.status(401).send("Error: wrong token or user not logged in");
     } else {
       next();
     }

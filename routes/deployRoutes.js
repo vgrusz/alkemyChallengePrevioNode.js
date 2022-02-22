@@ -2,13 +2,11 @@ const app = require("express")();
 
 const { urlencoded } = require("express");
 
-//Ruta para llenar inicialmente la BD con set de datos de prueba.
-//Únicamente con propósitos de testeo.
-//Eliminar luego de fase de pruebas.
+//This route is only for initial testing, delete after
 
 app.post("/resetPopulateDB", (req, res) => {
   require("../test/resetSeedDB");
-  res.send("Petición enviada - El resultado se verifica en logs y en BD");
+  res.send("Request sended - Check logs and DB to confirm");
 });
 
 module.exports = app;

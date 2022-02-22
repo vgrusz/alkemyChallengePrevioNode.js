@@ -52,7 +52,7 @@ app.get("/characters", (req, res) => {
       },
     })
       .then((characters) => {
-        //Quita los campos no solicitados
+        //Takes off non significative fields
         let characters2 = characters.map((unPersonaje) => {
           return { imagen: unPersonaje.imagen, nombre: unPersonaje.nombre };
         });
@@ -80,7 +80,7 @@ app.get("/character/:id", async (req, res) => {
     });
 });
 
-//LISTAR TODOS
+//LIST ALL
 app.get("/rawCharacters", (req, res) => {
   Character.findAll()
     .then((characters) => {

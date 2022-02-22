@@ -15,7 +15,7 @@ require("./database/associations");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//IMPORTANTE este middleware debe estar antes que las rutas.
+//IMPORTANT this middleware must be before the rest of routes.
 auth.unless = unless;
 app.use(
   auth.unless({
@@ -33,28 +33,28 @@ app.use(moviesRoutes);
 app.use(genresRoutes);
 app.use(usersRoutes);
 
-//Rutas para pruebas iniciales, eliminar luego.
+//For initial testing only, delete after.
 app.use(deployRoutes);
 
-// Inicio del servidor y conexión a la BD
+// Server initialize and DB connection
 
 const PORT = process.env.PORT || 3000;
 
-// Ruta de testeo inicial
+// Initial testing route
 app.get("/", function (req, res) {
-  res.send("Hola mundo");
+  res.send("Hello world");
 });
 
 const server = app.listen(PORT, function () {
-  console.log(`App en http://localhost:${PORT}\n`);
+  console.log(`App on http://localhost:${PORT}\n`);
 
   sequelize
     .sync({ force: false })
     .then(() => {
-      console.log("Conexión a BD ok");
+      console.log("Connection to BD ok");
     })
     .catch((error) => {
-      console.log("Error al conectar a DB", error);
+      console.log("Error connecting to DB", error);
     });
 });
 

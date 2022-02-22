@@ -1,16 +1,16 @@
 const app = require("express")();
 
 const { urlencoded } = require("express");
-const Personaje = require("../database/models/CharacterDBModel");
-const Pelicula = require("../database/models/MovieDBModel");
+const Character = require("../database/models/CharacterDBModel");
+const Movie = require("../database/models/MovieDBModel");
 require("../database/asociaciones");
 
 app.get("/characters", (req, res) => {
   // Punto 3 del challenge
   if (!req.query.name && !req.query.age && !req.query.movies) {
-    Personaje.findAll({ attributes: { exclude: ["id", "edad", "peso", "historia"] } })
-      .then((personajes) => {
-        res.json(personajes);
+    Character.findAll({ attributes: { exclude: ["id", "edad", "peso", "historia"] } })
+      .then((characters) => {
+        res.json(characters);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
@@ -18,46 +18,46 @@ app.get("/characters", (req, res) => {
   }
   //punto 6 del challenge
   else if (req.query.name) {
-    Personaje.findAll({
+    Character.findAll({
       where: { nombre: req.query.name },
       attributes: { exclude: ["id", "edad", "peso", "historia"] },
     })
-      .then((personajes) => {
-        res.json(personajes);
+      .then((characters) => {
+        res.json(characters);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
       });
   } else if (req.query.age) {
-    Personaje.findAll({
+    Character.findAll({
       where: { edad: req.query.age },
       attributes: { exclude: ["id", "edad", "peso", "historia"] },
     })
-      .then((personajes) => {
-        res.json(personajes);
+      .then((characters) => {
+        res.json(characters);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
       });
   } else {
     //Caso final req.query.movies
-    Personaje.findAll({
+    Character.findAll({
       attributes: { exclude: ["id", "edad", "peso", "historia", "Peliculas"] },
       include: {
-        model: Pelicula,
+        model: Movie,
         where: { id: req.query.movies },
         attributes: {
           exclude: ["Peliculas", "id", "imagen", "titulo", "fecha", "calificacion", "generoId", "pelicula_x_personaje"],
         },
       },
     })
-      .then((personajes) => {
+      .then((characters) => {
         //Quita los campos no solicitados
-        let personajes2 = personajes.map((unPersonaje) => {
+        let characters2 = characters.map((unPersonaje) => {
           return { imagen: unPersonaje.imagen, nombre: unPersonaje.nombre };
         });
 
-        res.json(personajes2);
+        res.json(characters2);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
@@ -68,12 +68,12 @@ app.get("/characters", (req, res) => {
 // Punto 5 del challenge
 
 app.get("/character/:id", async (req, res) => {
-  Personaje.findAll({
+  Character.findAll({
     where: { id: req.params.id },
-    include: { model: Pelicula },
+    include: { model: Movie },
   })
-    .then((personaje) => {
-      res.json(personaje);
+    .then((character) => {
+      res.json(character);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -82,9 +82,9 @@ app.get("/character/:id", async (req, res) => {
 
 //LISTAR TODOS
 app.get("/rawCharacters", (req, res) => {
-  Personaje.findAll()
-    .then((personajes) => {
-      res.json(personajes);
+  Character.findAll()
+    .then((characters) => {
+      res.json(characters);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -94,18 +94,18 @@ app.get("/rawCharacters", (req, res) => {
 //CREATE
 
 app.post("/character", (req, res) => {
-  Personaje.create({
+  Character.create({
     nombre: req.body.nombre,
     imagen: req.body.imagen,
     edad: req.body.edad,
     peso: req.body.peso,
     historia: req.body.historia,
   })
-    .then((personaje) => {
+    .then((character) => {
       let listaPeliculas = req.body.peliculasAsociadas ? req.body.peliculasAsociadas : [];
 
       listaPeliculas.forEach((element) => {
-        personaje
+        character
           .addPelicula(element)
           .then(() => {
             console.log("ok al asociar pelicula");
@@ -115,7 +115,7 @@ app.post("/character", (req, res) => {
           });
       });
 
-      res.json(personaje);
+      res.json(character);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -125,9 +125,9 @@ app.post("/character", (req, res) => {
 //READ
 
 app.get("/character/:id", (req, res) => {
-  Personaje.findByPk(req.params.id)
-    .then((personaje) => {
-      res.json(personaje);
+  Character.findByPk(req.params.id)
+    .then((character) => {
+      res.json(character);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -137,7 +137,7 @@ app.get("/character/:id", (req, res) => {
 //UPDATE
 
 app.put("/character/:id", (req, res) => {
-  Personaje.update(
+  Character.update(
     {
       nombre: req.body.nombre,
       imagen: req.body.imagen,
@@ -162,7 +162,7 @@ app.put("/character/:id", (req, res) => {
 //DELETE
 
 app.delete("/character/:id", (req, res) => {
-  Personaje.destroy({ where: { id: req.params.id } })
+  Character.destroy({ where: { id: req.params.id } })
     .then((result) => {
       res.json(result);
     })

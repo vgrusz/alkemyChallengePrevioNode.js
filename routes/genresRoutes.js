@@ -1,14 +1,14 @@
 const app = require("express")();
 
 const { urlencoded } = require("express");
-const Genero = require("../database/models/GenreDBModel");
+const Genre = require("../database/models/GenreDBModel");
 
 //LISTAR TODOS
 
-app.get("/generos", (req, res) => {
-  Genero.findAll()
-    .then((generos) => {
-      res.json(generos);
+app.get("/genres", (req, res) => {
+  Genre.findAll()
+    .then((genres) => {
+      res.json(genres);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -16,13 +16,13 @@ app.get("/generos", (req, res) => {
 });
 
 //CREATE
-app.post("/genero", (req, res) => {
-  Genero.create({
+app.post("/genre", (req, res) => {
+  Genre.create({
     nombre: req.body.nombre,
     imagen: req.body.imagen,
   })
-    .then((genero) => {
-      res.json(genero);
+    .then((genre) => {
+      res.json(genre);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -31,10 +31,10 @@ app.post("/genero", (req, res) => {
 
 //READ
 
-app.get("/genero/:id", (req, res) => {
-  Genero.findByPk(req.params.id)
-    .then((genero) => {
-      res.json(genero);
+app.get("/genre/:id", (req, res) => {
+  Genre.findByPk(req.params.id)
+    .then((genre) => {
+      res.json(genre);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -42,8 +42,8 @@ app.get("/genero/:id", (req, res) => {
 });
 
 //UPDATE
-app.put("/genero/:id", (req, res) => {
-  Genero.update(
+app.put("/genre/:id", (req, res) => {
+  Genre.update(
     {
       nombre: req.body.nombre,
       imagen: req.body.imagen,
@@ -64,8 +64,8 @@ app.put("/genero/:id", (req, res) => {
 
 //DELETE
 
-app.delete("/genero/:id", (req, res) => {
-  Genero.destroy({ where: { id: req.params.id } })
+app.delete("/genre/:id", (req, res) => {
+  Genre.destroy({ where: { id: req.params.id } })
     .then((result) => {
       res.json(result);
     })

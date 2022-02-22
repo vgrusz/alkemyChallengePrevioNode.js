@@ -4,7 +4,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const { urlencoded } = require("express");
-const Usuario = require("../database/models/UserDBModel");
+const User = require("../database/models/UserDBModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -14,12 +14,12 @@ app.post("/auth/register", async (req, res) => {
 
   let claveEncriptada = await bcrypt.hash(clavePlana, 10);
 
-  Usuario.create({
+  User.create({
     email: req.body.email,
     clave: claveEncriptada,
   })
-    .then((usuario) => {
-      enviarEmaildeRegistracion(usuario.email);
+    .then((user) => {
+      sendMailRegistration(user.email);
       res.send("usuario creado con éxito");
     })
     .catch((error) => {
@@ -29,15 +29,15 @@ app.post("/auth/register", async (req, res) => {
 
 app.post("/auth/login", async (req, res) => {
   try {
-    let usuario = await Usuario.findOne({ where: { email: req.body.email } });
+    let user = await User.findOne({ where: { email: req.body.email } });
 
-    if (usuario == null) {
+    if (user == null) {
       throw new Error("No se encontró usuario");
     } else {
-      let claveEsCorrecta = bcrypt.compareSync(req.body.clave, usuario.clave);
+      let passwordIsOk = bcrypt.compareSync(req.body.clave, user.clave);
 
-      if (claveEsCorrecta) {
-        let tokenData = { usuario: usuario.email };
+      if (passwordIsOk) {
+        let tokenData = { usuario: user.email };
 
         let token = jwt.sign(tokenData, process.env.JWT_SECRET_WORD, { expiresIn: 60 * 60 * 24 });
         res.send(token);
@@ -50,7 +50,7 @@ app.post("/auth/login", async (req, res) => {
   }
 });
 
-function enviarEmaildeRegistracion(email) {
+function sendMailRegistration(email) {
   const msg = {
     to: email,
     from: "disneyapp@gdisney.com",

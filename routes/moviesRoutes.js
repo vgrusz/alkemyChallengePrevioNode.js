@@ -1,17 +1,17 @@
 const app = require("express")();
 
 const { urlencoded } = require("express");
-const Pelicula = require("../database/models/MovieDBModel");
-const Personaje = require("../database/models/CharacterDBModel");
+const Movie = require("../database/models/MovieDBModel");
+const Character = require("../database/models/CharacterDBModel");
 
 //LISTAR TODOS EN FORMATO DEL PUNTO 7 Y 10 DEL CHALLENGE
 
 app.get("/movies", (req, res) => {
   // Punto 7 del challenge
   if (!req.query.name && !req.query.genre && !req.query.order) {
-    Pelicula.findAll({ attributes: { exclude: ["id", "calificacion", "GeneroId"] } })
-      .then((peliculas) => {
-        res.json(peliculas);
+    Movie.findAll({ attributes: { exclude: ["id", "calificacion", "GeneroId"] } })
+      .then((movies) => {
+        res.json(movies);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
@@ -19,23 +19,23 @@ app.get("/movies", (req, res) => {
   }
   //punto 10 del challenge
   else if (req.query.name) {
-    Pelicula.findAll({
+    Movie.findAll({
       where: { titulo: req.query.name },
       attributes: { exclude: ["id", "calificacion", "GeneroId"] },
     })
-      .then((peliculas) => {
-        res.json(peliculas);
+      .then((movies) => {
+        res.json(movies);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
       });
   } else if (req.query.genre) {
-    Pelicula.findAll({
+    Movie.findAll({
       where: { GeneroId: req.query.genre },
       attributes: { exclude: ["id", "calificacion", "GeneroId"] },
     })
-      .then((peliculas) => {
-        res.json(peliculas);
+      .then((movies) => {
+        res.json(movies);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
@@ -44,12 +44,12 @@ app.get("/movies", (req, res) => {
     // /movie/order?XXX
 
     console.log(req.query.order);
-    Pelicula.findAll({
+    Movie.findAll({
       attributes: { exclude: ["id", "calificacion", "GeneroId"] },
       order: [["fecha", req.query.order]],
     })
-      .then((peliculas) => {
-        res.json(peliculas);
+      .then((movies) => {
+        res.json(movies);
       })
       .catch((error) => {
         res.status(400).send({ error: error.message });
@@ -59,9 +59,9 @@ app.get("/movies", (req, res) => {
 
 //LISTAR TODOS
 app.get("/rawMovies", (req, res) => {
-  Pelicula.findAll()
-    .then((peliculas) => {
-      res.json(peliculas);
+  Movie.findAll()
+    .then((movies) => {
+      res.json(movies);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -70,15 +70,15 @@ app.get("/rawMovies", (req, res) => {
 
 //CREATE
 app.post("/movie", (req, res) => {
-  Pelicula.create({
+  Movie.create({
     imagen: req.body.imagen,
     titulo: req.body.titulo,
     fecha: req.body.fecha,
     calificacion: req.body.calificacion,
     GeneroId: req.body.GeneroId,
   })
-    .then((pelicula) => {
-      res.json(pelicula);
+    .then((movie) => {
+      res.json(movie);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -90,11 +90,11 @@ app.post("/movie", (req, res) => {
 //Punto 8 del challenge
 
 app.get("/movie/:id", (req, res) => {
-  Pelicula.findByPk(req.params.id, {
-    include: { model: Personaje },
+  Movie.findByPk(req.params.id, {
+    include: { model: Character },
   })
-    .then((pelicula) => {
-      res.json(pelicula);
+    .then((movie) => {
+      res.json(movie);
     })
     .catch((error) => {
       res.status(400).send({ error: error.message });
@@ -103,7 +103,7 @@ app.get("/movie/:id", (req, res) => {
 
 //UPDATE
 app.put("/movie/:id", (req, res) => {
-  Pelicula.update(
+  Movie.update(
     {
       imagen: req.body.imagen,
       titulo: req.body.titulo,
@@ -128,7 +128,7 @@ app.put("/movie/:id", (req, res) => {
 //DELETE
 
 app.delete("/movie/:id", (req, res) => {
-  Pelicula.destroy({ where: { id: req.params.id } })
+  Movie.destroy({ where: { id: req.params.id } })
     .then((result) => {
       res.json(result);
     })

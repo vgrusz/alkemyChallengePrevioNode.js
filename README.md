@@ -65,3 +65,7 @@ Extras
     Posibilidad de crear un personaje y en el mismo acto asignarle películas
 
         Si en el body del endpoint post /character se agrega un campo "listaPelículas" con un array conteniendo los id de las peliculas en las que aparece ese personaje, se asignan esas películas en el momento de la creación del registro de ese personaje.
+
+Consideraciones generales
+
+    Se respetó el uso de castellano en los nombres de los campos de la base de datos y en los objetos de acuerdo a lo indicado en las instrucciones. Se usó inglés en todo lo que no estuviese explícitamente especificado en castellano.

@@ -1,71 +1,70 @@
-Challenge aceleración Alkemy backend Node.js
+Challenge accelleration Alkemy backend Node.js
 
-Instrucciones para reproducir el proyecto:
+To reproduce project:
 
-    Clonar el repositorio
+    Clone repository
 
-    Ejecutar npm install
+    Execute npm install
 
-    Crear una BD en mySql, y modificar los parámetros indicados en config.js
-    modificando el archivo con los valores locales.
+    Create a DB in mySql, and modify parameters in config.js updating file with local values
 
-    Crear tres variables de entorno:
+    Create this three environment variables;
 
-    Token de Sendgrid : SENDGRID_API_KEY
+    Sendgrid token : SENDGRID_API_KEY
 
     Database password : DBPASSWORD
 
-    Palabra secreta de JWT : JWT_SECRET_WORD
+    JWT secret word : JWT_SECRET_WORD
 
-Testeos
+Testing
 
-    Ejecutar npm run test
+    Execute npm run test
 
-    Breve explicación de testeos:
+    Brief explanation of tests:
 
-        El script de testeos es:
+        Testing script is:
 
         node ./test/resetSeedDB.js && mocha ./test/createFirstUser.js ./test/test.js --exit
 
-        resetSeedDB.js resetea la BD y la llena con una serie de registros de prueba
+        resetSeedDB.js resets Db and fills it with testing values
 
-        createFirstUser.js crea un primer usuario, lo loguea y obtiene el token. Si falla esto fallarán varios del resto de los test, específicamente aquellos que dependen del token. El token es guardado en un archivo token.txt para ser usado por la siguiente tanda de tests.
+        createFirstUser.js creates a first user, logins it and gets its token. If this fails, all subsequent tests based on this token will fail. The token is stored in file token.txt in order to be used in further tests.
 
-        test.js ejecuta los test del resto de los endpoints. Por tratarse de un challenge he creado sólo un set de pruebas mínimo.
+        test.js executes the tests of the rest of the endpoints. Taking into account that this is only a challenge, only a few tests were created as sample.
 
 Deploy
 
-    La aplicación fue desplegada en heroku.com
+    This application is deployed in heroku.com
 
         https://vgalkemy00.herokuapp.com
 
 
-    y la BD creada en
+    and DB is stored in
 
         https://remotemysql.com/
 
-    También se documentaron los endpoints en Postman:
+    Tests/endpoints were also documented in postman:
 
         https://documenter.getpostman.com/view/19651427/UVkiTeP6
 
 Extras
 
-    Endpoints con los datos completos de personajes y películas
-
-        Dado que el challenge pide que se excluyan algunos campos en el listado de películas y personajes, también se crearon las rutas
-
-            /rawMovies
-            /rawCharacters
-
-        que listan los personajes pero con toda su información completa.
+    Endpoints with complete data of characters and movies:
 
 
+    Since the challenge asks that some fields be excluded from the list of movies and characters, these routes were also created:
+
+            get /rawMovies
+            get /rawCharacters
+
+        to get characters and movies with all its data.
 
 
-    Posibilidad de crear un personaje y en el mismo acto asignarle películas
 
-        Si en el body del endpoint post /character se agrega un campo "listaPelículas" con un array conteniendo los id de las peliculas en las que aparece ese personaje, se asignan esas películas en el momento de la creación del registro de ese personaje.
+    Possibility of creating a character and simultaneously assign its movies
 
-Consideraciones generales
+        If a field "listaDePeliculas" containing an array with movies ids is added in the body of post /character endpoint, those movies will be automatically assigned to that character in the moment of its creation.
 
-    Se respetó el uso de castellano en los nombres de los campos de la base de datos y en los objetos de acuerdo a lo indicado en las instrucciones. Se usó inglés en todo lo que no estuviese explícitamente especificado en castellano.
+General comments
+
+    The use of Spanish was respected in the names of the fields of the database and in the objects as indicated in the instructions. English was used in everything that was not explicitly specified in Spanish.

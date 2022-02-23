@@ -70,7 +70,7 @@ Extras
 
         post /resetPopulateDB
 
-        Este endpoint y su archivo deployRoutes.js deben ser eliminados luego de los testeos iniciales del deploy.
+    Este endpoint y su archivo deployRoutes.js deben ser eliminados luego de los testeos iniciales del deploy.
 
 Consideraciones generales
 

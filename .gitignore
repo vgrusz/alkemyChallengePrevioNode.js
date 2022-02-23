@@ -1,3 +1,5 @@
 /node_modules
 secretos.txt
 ./test/token.txt
+/.vscode
+.gitignore

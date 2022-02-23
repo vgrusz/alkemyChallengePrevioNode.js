@@ -11,7 +11,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
   var token = "Initial value";
 
   before(() => {
-    //console.log("Al iniciar casos de testeo");
+    //console.log("Before all tests");
 
     try {
       token = fs.readFileSync("./test/token.txt", "utf8");
@@ -24,7 +24,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
   });
 
   beforeEach(() => {
-    //console.log("Antes de cada caso de testeo");
+    //console.log("Before each test");
   });
 
   after(function (done) {
@@ -32,7 +32,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
     done();
   });
 
-  it("Obtener pagina principal", (done) => {
+  it("Get main page", (done) => {
     chai
       .request(server)
       .get("/")
@@ -45,7 +45,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
       });
   });
 
-  it("Acceder a un endpoint teniendo el token", function (done) {
+  it("Access an endpoint having token", function (done) {
     chai
       .request(server)
       .get("/characters")
@@ -56,7 +56,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
       });
   });
 
-  it("Intentar accecer a un endpoint sin token", (done) => {
+  it("Try access an endpoint without token", (done) => {
     chai
       .request(server)
       .get("/characters")
@@ -69,7 +69,7 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
       });
   });
 
-  it("Intentar crear una película sin género", (done) => {
+  it("Try to create a movie without genre", (done) => {
     chai
       .request(server)
       .post("/movies")

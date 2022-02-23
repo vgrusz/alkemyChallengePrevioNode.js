@@ -6,7 +6,7 @@ const { urlencoded } = require("express");
 
 app.post("/resetPopulateDB", (req, res) => {
   require("../test/resetSeedDB");
-  res.send("Request sended - Check logs and DB to confirm");
+  res.send("Request sent - Check logs and DB to confirm");
 });
 
 module.exports = app;

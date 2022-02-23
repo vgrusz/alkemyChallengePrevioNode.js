@@ -34,7 +34,7 @@ app.use(genresRoutes);
 app.use(usersRoutes);
 
 //For initial testing only, delete after.
-app.use(deployRoutes);
+//app.use(deployRoutes);
 
 // Server initialize and DB connection
 

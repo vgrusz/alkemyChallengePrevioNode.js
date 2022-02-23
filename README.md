@@ -67,6 +67,12 @@ Extras
 
         If a field "listaDePeliculas" containing an array with movies ids is added in the body of post /character endpoint, those movies will be automatically assigned to that character in the moment of its creation.
 
+    Endpoint to seed database with testing values when testing deploy
+
+        post /resetPopulateDB
+
+        This endpoint and it file deployRoutes.js must be deleted after initial deployment testings.
+
 General comments
 
     The use of Spanish was respected in the names of the fields of the database and in the objects as indicated in the instructions. English was used in everything that was not explicitly specified in Spanish.

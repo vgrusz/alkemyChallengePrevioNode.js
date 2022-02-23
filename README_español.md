@@ -66,6 +66,12 @@ Extras
 
         Si en el body del endpoint post /character se agrega un campo "listaPelículas" con un array conteniendo los id de las peliculas en las que aparece ese personaje, se asignan esas películas en el momento de la creación del registro de ese personaje.
 
+    Endpoint para llenar la BD con datos de testeo al momento de testear el deploy
+
+        post /resetPopulateDB
+
+        Este endpoint y su archivo deployRoutes.js deben ser eliminados luego de los testeos iniciales del deploy.
+
 Consideraciones generales
 
     Se respetó el uso de castellano en los nombres de los campos de la base de datos y en los objetos de acuerdo a lo indicado en las instrucciones. Se usó inglés en todo lo que no estuviese explícitamente especificado en castellano.

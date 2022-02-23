@@ -34,7 +34,7 @@ const personajes_x_peliculas = [
 ];
 
 function seed() {
-  console.log("Reset DB and fill it with a set of values for testing purpouses");
+  console.log("Reset DB and fill it with a set of values for testing purposes");
   sequelize.sync({ force: true }).then(() => {
     setTimeout(() => {
       /*Brinda un tiempo extra al servidor mySQL para garantizar que terminó todas sus 

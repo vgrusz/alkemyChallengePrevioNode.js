@@ -4,8 +4,7 @@ module.exports = {
     username: "root",
     password: "",
     database: "disney",
-    host: "localhost",
-    */
+    host: "localhost",*/
     username: "7YRMOZ6rAx",
     password: process.env.DBPASSWORD,
     database: "7YRMOZ6rAx",

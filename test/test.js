@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const fs = require("fs");
 
-describe("Suite de testeos que lee archivo de token de la suite inicial y hace pruebas con ese token", () => {
+describe("This test suite reads token from file left by the intitial suite and makes tests with that token", () => {
   var server;
   var token = "Initial value";
 
@@ -80,4 +80,238 @@ describe("Suite de testeos que lee archivo de token de la suite inicial y hace p
         done();
       });
   });
+
+  //Basic test of "working or not" of all endpoints
+
+  //Movies routes
+
+  it("get /movies", function (done) {
+    chai
+      .request(server)
+      .get("/movies")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /movie/1", function (done) {
+    chai
+      .request(server)
+      .get("/movie/1")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /movies name", function (done) {
+    chai
+      .request(server)
+      .get("/movies?name=Cenicienta")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /movies genre", function (done) {
+    chai
+      .request(server)
+      .get("/movies?genre=1")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /movies order", function (done) {
+    chai
+      .request(server)
+      .get("/movies?order=ASC")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /rawMovies", function (done) {
+    chai
+      .request(server)
+      .get("/rawMovies")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("post /movie", function (done) {
+    chai
+      .request(server)
+      .post("/movie")
+      .auth(token, { type: "bearer" })
+      .send({
+        titulo: "Fantasía 3",
+        imagen: "url img Fantasía3",
+        fecha: "1998-12-31T23:00:00.000Z",
+        calificacion: 1,
+        GeneroId: 1,
+      })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("put /movie/1", function (done) {
+    chai
+      .request(server)
+      .put("/movie/1")
+      .auth(token, { type: "bearer" })
+      .send({
+        titulo: "Fantasía 4",
+        imagen: "url img Fantasía3",
+        fecha: "1998-12-31T23:00:00.000Z",
+        calificacion: 1,
+        GeneroId: 1,
+      })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("del /movie/4", function (done) {
+    chai
+      .request(server)
+      .del("/movie/4")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  //Characters routes
+
+  it("get /characters", function (done) {
+    chai
+      .request(server)
+      .get("/characters")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /character/1", function (done) {
+    chai
+      .request(server)
+      .get("/character/1")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /character name", function (done) {
+    chai
+      .request(server)
+      .get("/characters?name=Pluto")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /characters age", function (done) {
+    chai
+      .request(server)
+      .get("/characters?age=20")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /characters movies=idMovie", function (done) {
+    chai
+      .request(server)
+      .get("/characters?movies=2")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("get /rawCharacters", function (done) {
+    chai
+      .request(server)
+      .get("/rawCharacters")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("post /character", function (done) {
+    chai
+      .request(server)
+      .post("/character")
+      .auth(token, { type: "bearer" })
+      .send({
+        nombre: "Shreck",
+        imagen: "url img shreck",
+        edad: 100,
+        peso: 100,
+        historia: "Un gran ogro",
+      })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("put /character/1", function (done) {
+    chai
+      .request(server)
+      .put("/movie/1")
+      .auth(token, { type: "bearer" })
+      .send({
+        nombre: "Mickey 2",
+        imagen: "url img Mickey 2",
+        edad: 100,
+        peso: 100,
+        historia: "Un ratón",
+      })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  it("del /character/4", function (done) {
+    chai
+      .request(server)
+      .del("/character/4")
+      .auth(token, { type: "bearer" })
+      .end(function (err, res) {
+        res.should.have.status(200);
+        done();
+      });
+  });
+
+  //end
 });

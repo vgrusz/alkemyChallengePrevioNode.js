@@ -1,6 +1,6 @@
-    (Hay una versión en castellano de este archivo, ver README_español.md)
-
 Challenge accelleration Alkemy backend Node.js
+
+    (Hay una versión en castellano de este archivo, ver README_español.md)
 
 To reproduce project:
 
